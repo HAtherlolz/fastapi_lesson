@@ -32,6 +32,8 @@ class Settings(BaseSettings):
     DB_PORT = os.getenv('DB_PORT')
     DB_URL = f'postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
+    DB_URL_DICT_ALEMBIC = {'sqlalchemy.url': f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'}
+
     # Bucket Connection
     BUCKET_DOMAIN = os.getenv('BUCKET_DOMAIN')
     AWS_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME')

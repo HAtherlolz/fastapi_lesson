@@ -1,9 +1,9 @@
 from datetime import datetime
 
 from sqlalchemy import Column, String, Float, DateTime, Integer
-from sqlalchemy.orm import Mapped, declarative_base
+from sqlalchemy.orm import Mapped
 
-Base = declarative_base()
+from .base import Base
 
 
 class Profile(Base):

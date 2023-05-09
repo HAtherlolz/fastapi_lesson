@@ -1,21 +1,13 @@
-# from sqlalchemy import MetaData
-# from sqlalchemy.orm import DeclarativeBase
-#
-# convention = {
-#     "ix": "ix_%(column_0_label)s",
-#     "uq": "uq_%(table_name)s_%(column_0_name)s",
-#     "ck": "ck_%(table_name)s_%(constraint_name)s",
-#     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-#     "pk": "pk_%(table_name)s",
-# }
-#
-#
-# class Base(DeclarativeBase):
-#     __abstract__ = True
-#     metadata = MetaData(naming_convention=convention)
-#
-#     def __repr__(self) -> str:
-#         columns = ", ".join(
-#             [f"{k}={repr(v)}" for k, v in self.__dict__.items() if not k.startswith("_")]
-#         )
-#         return f"<{self.__class__.__name__}({columns})>"
+from typing import Any
+
+from sqlalchemy.orm import as_declarative, declared_attr
+
+
+@as_declarative()
+class Base:
+    id: Any
+    __name__: str
+    # Generate __tablename__ automatically
+    @declared_attr
+    def __tablename__(cls) -> str:
+        return cls.__name__.lower()
